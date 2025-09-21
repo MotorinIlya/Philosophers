@@ -1,19 +1,28 @@
-namespace Philosophers.Model;
+using Philosophers.Model.Interfaces;
+using Philosophers.Model.Const;
+using Philosophers.Model.Enums;
 
-public class Philosopher (string name, Fork leftFork, Fork rightFork)
+namespace Philosophers.Implementations;
+
+public class Philosopher (string name, int id, IFork leftFork, IFork rightFork) : IPhilosopher, IObserver
 {
     public string Name { get; } = name;
     public int TimeToNextAction => _timeToNextAction;
     public int TimeLeft => _timeToActionNow;
     public PhilosopherState State => _state;
+    public int Id { get; } = id;
+    public int CountEat => _countEat;
+    public bool HasLeftFork => _hasLeftFork;
+    public bool HasRightFork => _hasRightFork;
     
     private PhilosopherState _state = PhilosopherState.Thinking;
     private int _timeToNextAction = 5;
     private int _timeToActionNow = 0;
     private readonly Random _rand = new Random();
+    private int _countEat = 0;
     
-    private Fork _leftFork = leftFork;
-    private Fork _rightFork = rightFork;
+    private readonly IFork _leftFork = leftFork;
+    private readonly IFork _rightFork = rightFork;
 
     private bool _hasLeftFork = false;
     private bool _hasRightFork = false;
@@ -51,7 +60,7 @@ public class Philosopher (string name, Fork leftFork, Fork rightFork)
 
     public void TryTakeRightFork()
     {
-        if (_hasLeftFork && !_hasRightFork && _rightFork.State == ForkState.Available)
+        if (!_hasRightFork && _rightFork.State == ForkState.Available)
         {
             _countTimeToTakeRightFork++;
             if (_countTimeToTakeRightFork == Const.StepsForTakingFork)
@@ -93,6 +102,7 @@ public class Philosopher (string name, Fork leftFork, Fork rightFork)
     {
         if (_timeToNextAction == 0)
         {
+            _countEat++;
             _state = PhilosopherState.Thinking;
             _timeToNextAction = _rand.Next(Const.MinStepsForThinking, Const.MaxStepsForThinking);
         }

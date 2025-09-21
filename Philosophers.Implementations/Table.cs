@@ -1,25 +1,31 @@
-namespace Philosophers.Model;
+using Philosophers.Model.Const;
+using Philosophers.Model.Enums;
+using Philosophers.Model.Interfaces;
+using Philosophers.Strategy;
+
+namespace Philosophers.Implementations;
 
 public class Table
 {
-    private readonly List<Philosopher> _philosophers;
+    private readonly List<IPhilosopher> _philosophers;
     private readonly List<Fork> _forks;
-    private readonly IStrategy _strategy;
+    private readonly NaiveStrategy _strategy;
 
     public Table(List<string> namesPhilosophers)
     {
         _strategy = new NaiveStrategy();
-        _philosophers = new List<Philosopher>();
+        _philosophers = new List<IPhilosopher>();
         _forks = new List<Fork>();
         for (var i = 0; i < namesPhilosophers.Count; i++)
         {
-            _forks.Add(new Fork());
+            _forks.Add(new Fork(i));
         }
 
         for (var i = 0; i < namesPhilosophers.Count; i++)
         {
             _philosophers.Add(new Philosopher(
                 namesPhilosophers[i], 
+                i,
                 _forks[i],
                 _forks[(i + 1) % namesPhilosophers.Count]));
         }
@@ -34,7 +40,7 @@ public class Table
                 _strategy.RunStep(philosopher);
             }
 
-            if (i % 50_000 == 0)
+            if (i == steps - 1)
             {
                 PrintState(i);
             }
@@ -54,15 +60,28 @@ public class Table
                 PhilosopherState.Eating   => $"({p.TimeLeft} steps left)",
                 _ => ""
             };
-            Console.WriteLine($"  {p.Name}: {p.State} {extra}");
+            Console.WriteLine($"  {p.Name}: {p.State} {extra} (съел {p.CountEat})");
         }
         Console.WriteLine("\nВилки:");
         for (var i = 0; i < _forks.Count; i++)
         {
             if (_forks[i].State == ForkState.Available)
+            {
                 Console.WriteLine($"  Fork-{i}: Available");
+            }
             else
-                Console.WriteLine($"  Fork-{i}: InUse (используется)");
+            {
+                IPhilosopher philosopher;
+                if (_philosophers[i].HasLeftFork)
+                {
+                    philosopher = _philosophers[i];
+                }
+                else
+                {
+                    philosopher = _philosophers[(i - 1 + _forks.Count) % _forks.Count];
+                }
+                Console.WriteLine($"  Fork-{i}: InUse (используется {philosopher.Name})");
+            }
         }
         Console.WriteLine();
     }

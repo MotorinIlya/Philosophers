@@ -5,7 +5,11 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Philosophers.Model", "Philosophers.Model\Philosophers.Model.csproj", "{19134C83-AA81-4BFF-B6B9-0DADF307051F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Philosophers.Step", "Philosophers.Step\Philosophers.Step.csproj", "{95997E12-FDE1-4525-AF28-2B4193B361CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Philosophers.Runner", "Philosophers.Runner\Philosophers.Runner.csproj", "{95997E12-FDE1-4525-AF28-2B4193B361CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Philosophers.Strategy", "Philosophers.Strategy\Philosophers.Strategy.csproj", "{110B21E1-7746-4E58-9381-A329F5EF68C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Philosophers.Implementations", "Philosophers.Implementations\Philosophers.Implementations.csproj", "{3E8F34B5-F77A-410E-81CE-760C1C7D9975}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +28,13 @@ Global
 		{95997E12-FDE1-4525-AF28-2B4193B361CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95997E12-FDE1-4525-AF28-2B4193B361CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95997E12-FDE1-4525-AF28-2B4193B361CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{110B21E1-7746-4E58-9381-A329F5EF68C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{110B21E1-7746-4E58-9381-A329F5EF68C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{110B21E1-7746-4E58-9381-A329F5EF68C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{110B21E1-7746-4E58-9381-A329F5EF68C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E8F34B5-F77A-410E-81CE-760C1C7D9975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E8F34B5-F77A-410E-81CE-760C1C7D9975}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E8F34B5-F77A-410E-81CE-760C1C7D9975}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E8F34B5-F77A-410E-81CE-760C1C7D9975}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

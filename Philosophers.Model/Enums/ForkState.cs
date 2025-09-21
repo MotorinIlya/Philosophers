@@ -1,4 +1,4 @@
-namespace Philosophers.Model;
+namespace Philosophers.Model.Enums;
 
 public enum ForkState
 {

@@ -1,4 +1,4 @@
-namespace Philosophers.Model;
+namespace Philosophers.Model.Const;
 
 public static class Const
 {

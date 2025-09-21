@@ -1,5 +1,4 @@
-﻿
-using Philosophers.Model;
+﻿using Philosophers.Implementations;
 
 namespace Philosophers.Step;
 
